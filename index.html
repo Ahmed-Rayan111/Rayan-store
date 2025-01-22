@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAYAN STORE - أدوات كهربائية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 id="store-name">RAYAN STORE</h1>
+        <div id="user-info">
+            <span id="welcome-message"></span>
+            <button id="logout-btn" onclick="logout()" style="display: none;">تسجيل الخروج</button>
+        </div>
+        <button onclick="toggleSettings()">الإعدادات</button>
+        <button onclick="toggleCart()">السلة</button>
+    </header>
+
+    <main>
+        <!-- إعدادات المتجر -->
+        <section id="settings" style="display: none;">
+            <h2>الإعدادات</h2>
+            <label for="language-select">اختر اللغة:</label>
+            <select id="language-select" onchange="changeLanguage()">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+
+            <h2>إضافة منتج جديد</h2>
+            <form id="add-product-form" onsubmit="return addProduct()">
+                <input type="text" id="product-name" placeholder="اسم المنتج" required>
+                <input type="text" id="product-description" placeholder="وصف المنتج" required>
+                <input type="number" id="product-price" placeholder="السعر" required>
+                <input type="file" id="product-image" accept="image/*">
+                <button type="submit">إضافة المنتج</button>
+            </form>
+        </section>
+
+        <!-- تسجيل الدخول -->
+        <section id="login">
+            <h2>تسجيل الدخول</h2>
+            <form onsubmit="return login()">
+                <input type="text" id="username" placeholder="اسم المستخدم" required>
+                <input type="password" id="password" placeholder="كلمة المرور" required>
+                <button type="submit">تسجيل الدخول</button>
+            </form>
+            <button id="create-account-btn" onclick="toggleCreateAccount()">إنشاء حساب جديد</button>
+        </section>
+
+        <!-- إنشاء حساب جديد -->
+        <section id="create-account" style="display: none;">
+            <h2>إنشاء حساب جديد</h2>
+            <form onsubmit="return createAccount()">
+                <input type="text" id="new-username" placeholder="اسم المستخدم" required>
+                <input type="password" id="new-password" placeholder="كلمة المرور" required>
+                <input type="password" id="confirm-password" placeholder="تأكيد كلمة المرور" required>
+                <button type="submit">إنشاء الحساب</button>
+            </form>
+        </section>
+
+        <!-- البحث عن المنتجات -->
+        <section id="search" style="display: none;">
+            <input type="text" id="search-box" placeholder="ابحث عن منتج..." oninput="searchProducts()">
+        </section>
+
+        <!-- عرض المنتجات -->
+        <section id="products" style="display: none;">
+            <h2>المنتجات المتاحة</h2>
+        </section>
+
+        <!-- السلة -->
+        <section id="cart" style="display: none;">
+            <h2>السلة</h2>
+            <ul id="cart-items"></ul>
+            <p>الإجمالي: <span id="total-price">0</span></p>
+            <button onclick="clearCart()">إفراغ السلة</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
